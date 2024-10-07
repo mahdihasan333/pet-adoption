@@ -93,19 +93,6 @@ const categoryName = (name) => {
 const displayAllPets = (pet) => {
   const allPetContainer = document.getElementById("all-pets-container");
 
-  // -- categoryte data na thakle
-
-  // if(pet.length === 0) {
-  //   allPetContainer.innerHTML `
-  //   <div>
-  //     <img src="images/error.webp">
-  //     <h2 class="text-4xl font-bold font-Inter">No Information Available</h2>
-  //     <p class="font-Lato text-base text-mainParagraph">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
-  //   </div>
-  //   `
-  //   return;
-  // }
-
   pet.forEach((item) => {
     const { petId, image, pet_name, breed, date_of_birth, gender, price } =
       item;
@@ -123,7 +110,7 @@ const displayAllPets = (pet) => {
         </div>  
         <div class="divider"></div>
         <div class="flex justify-between">
-          <button onclick="collectImage()" class="btn"><i class="fa-solid fa-thumbs-up"></i></button>
+          <button onclick="collectImage('${petId}')" class="btn"><i class="fa-solid fa-thumbs-up"></i></button>
           <button onclick="adoptPet()" class="btn">Adopt</button>
           <button class="btn" onclick="showModal('${petId}')">Details</button>
         </div>
@@ -140,22 +127,18 @@ const collectImage = async (id) => {
     `https://openapi.programming-hero.com/api/peddy/pet/${id}`
   );
   const data = await collect.json();
-  imageCollect(data.pets);
-  console.log(data)
+  console.log(data);
+  const petImageContainer = document.getElementById("noImageSection");
+  petImageContainer.innerHTML += `
+    
+      <div class="rounded-xl w-full">
+        <img class="w-full h-32 object-cover rounded-xl" src="${data.petData.image}"/>
+      </div>
+    
+  `;
 };
 
-// Image collect
-const imageCollect = (id) => {
-  console.log(id)
-  const petImageContainer = document.getElementById("noImageSection");
-  const div = document.createElement("div");
-  div.classList = 'flex';
-  div.innerHTML = `
-    <div class="mr-28">${id}</div>
-    <div class="mr-3">${id}</div>
-  `;
-  petImageContainer.append(div);
-};
+
 
 // modal function
 const showModal = async (id) => {
