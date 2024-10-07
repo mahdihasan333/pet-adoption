@@ -19,7 +19,7 @@ const showAllPets = () => {
 const showByCategory = (id) => {
   alert(id);
   // fetch
-  fetch("https://openapi.programming-hero.com/api/peddy/category/${id}")
+  fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
     .then((response) => response.json())
     .then((data) => console.log(data.categories))
     .catch((error) => console.log(error));
@@ -28,17 +28,65 @@ const showByCategory = (id) => {
 // categories
 const displayAllCategories = (categories) => {
   const petCategoriesContainer = document.getElementById("pet-categories");
-
   categories.forEach((item) => {
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML = `
-    <div class="flex justify-center items-center cursor-pointer border-[2px] rounded-xl lg:px-14 px-7 py-3 lg:space-x-4">
+    <div onclick="categoryName('${item.category}')" class="flex justify-center items-center cursor-pointer border-[2px] rounded-xl lg:px-14 px-7 py-3 lg:space-x-4">
         <img src="${item.category_icon}"/>
         <span class="font-bold text-2xl">${item.category}</span>
     </div>
           `;
     petCategoriesContainer.appendChild(buttonContainer);
   });
+};
+
+// catatory by catagory name
+const categoryName = (name) => {
+  document.getElementById("all-pets-container").innerHTML = "";
+  const allPetContainer = document.getElementById("all-pets-container");
+  document.getElementById("pet-section").classList.remove("hidden");
+  document.getElementById("error-container").classList.add("hidden");
+  fetch(
+    `https://openapi.programming-hero.com/api/peddy/category/${name.toLowerCase()}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.data.length === 0) {
+        document.getElementById("pet-section").classList.add("hidden");
+        document.getElementById("error-container").classList.remove("hidden");
+        return;
+      }
+
+      data.data.forEach((item) => {
+        const { petId, image, pet_name, breed, date_of_birth, gender, price } =
+          item;
+        const div = document.createElement("div");
+        div.innerHTML = `
+    <div>
+      <div class="p-5 shadow-lg rounded-lg space-y-3 mb-3">
+        <img src=${image}>
+        <div class="space-y-3">
+          <h3 class="text-xl font-bold font-Inter text-bannerParagraph">${pet_name}</h3>
+          <p class="text-base text-mainParagraph">Breed:${breed}</p>
+          <p class="text-base text-mainParagraph"><i class="fa-regular fa-calendar"></i> Birth: ${date_of_birth}</p>
+          <p class="text-base text-mainParagraph"><i class="fa-solid fa-venus"></i> Gender: ${gender}</p>
+          <p class="text-base text-mainParagraph"><i class="fa-solid fa-dollar-sign"></i> Price:${price}</p>
+        </div>  
+        <div class="divider"></div>
+        <div class="flex justify-between">
+          <button onclick="collectImage()" class="btn"><i class="fa-solid fa-thumbs-up"></i></button>
+          <button onclick="adoptPet()" class="btn">Adopt</button>
+          <button class="btn" onclick="showModal('${petId}')">Details</button>
+        </div>
+      </div>
+    </div>
+    `;
+        allPetContainer.appendChild(div);
+      });
+    })
+    .catch((error) => console.log(error));
+
+  // const allPet = document.getElementById('all-pets-container')
 };
 
 // show All pet
@@ -87,18 +135,26 @@ const displayAllPets = (pet) => {
 };
 
 // collect image
-const collectImage = (item) => {
-  const petImageContainer = document.getElementById("pet-image-container");
+const collectImage = async (id) => {
+  const collect = await fetch(
+    `https://openapi.programming-hero.com/api/peddy/pet/${id}`
+  );
+  const data = await collect.json();
+  imageCollect(data.pets);
+  console.log(data)
+};
+
+// Image collect
+const imageCollect = (id) => {
+  console.log(id)
+  const petImageContainer = document.getElementById("noImageSection");
   const div = document.createElement("div");
+  div.classList = 'flex';
   div.innerHTML = `
-  <div class="grid grid-cols-2 justify-between gap-5 p-4">
-    <div class="w-full p-2">
-      image
-    </div>
-    <div class="w-full p-2">image</div>
-  </div>
+    <div class="mr-28">${id}</div>
+    <div class="mr-3">${id}</div>
   `;
-  petImageContainer.appendChild(div);
+  petImageContainer.append(div);
 };
 
 // modal function
