@@ -32,12 +32,11 @@ const displayAllCategories = (categories) => {
   categories.forEach((item) => {
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML = `
-    <button id="btn${item.category}" onclick="showByCategory(${item.category})" class=" btn category-btn py-8 px-10">
-      <img class="-mt-5 w-[20px]" src=${item.category_icon}/>
-      <span class="font-bold">${item.category}</span>
-    </button>
-    `;
-
+    <div class="flex justify-center items-center cursor-pointer border-[2px] rounded-xl lg:px-14 px-7 py-3 lg:space-x-4">
+        <img src="${item.category_icon}"/>
+        <span class="font-bold text-2xl">${item.category}</span>
+    </div>
+          `;
     petCategoriesContainer.appendChild(buttonContainer);
   });
 };
@@ -74,6 +73,7 @@ const displayAllPets = (pet) => {
           <p class="text-base text-mainParagraph"><i class="fa-solid fa-venus"></i> Gender: ${gender}</p>
           <p class="text-base text-mainParagraph"><i class="fa-solid fa-dollar-sign"></i> Price:${price}</p>
         </div>  
+        <div class="divider"></div>
         <div class="flex justify-between">
           <button onclick="collectImage()" class="btn"><i class="fa-solid fa-thumbs-up"></i></button>
           <button onclick="adoptPet()" class="btn">Adopt</button>

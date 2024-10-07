@@ -18,34 +18,13 @@
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
     rel="stylesheet">
 
-    <!-- font Awesome CDN link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- font Awesome CDN link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <style>
-      /* Spinner styles */
 
-      #spinner {
-        display: none;
-        width: 40px;
-        height: 40px;
-        border: 4px solid rgba(0, 0, 0, 0.1);
-        border-top: 4px solid #000;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin: 20px auto;
-      }
-  
-      /* Spinner animation */
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-  
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-    </style>
+
   <script>
     tailwind.config = {
       theme: {
@@ -68,49 +47,59 @@
 </head>
 
 <body>
-  <header class="w-11/12 mx-auto p-5">
-    <!-- nav section -->
-    <nav>
-      <div class="navbar bg-base-100">
-        <div class="navbar-start">
-          <a class="flex gap-2">
-            <img src="./images/logo.webp" alt="">
-            <h1>Peddy</h1>
-          </a>
-        </div>
-        <div class="navbar-center hidden lg:flex">
-          <ul class="menu menu-horizontal px-1">
-            <li><a>Home</a></li>
-            <li><a>Shop</a></li>
-            <li><a>Contact </a></li>
-          </ul>
-        </div>
-        <div class="navbar-end">
-          <a class="btn"><i class="fa-regular fa-user"></i></a>
-        </div>
+
+  <header class="w-11/12 mx-auto xl:container">
+    <nav class="navbar bg-base-100">
+      <div class="navbar-start">
+        <a class="btn btn-ghost text-3xl text-black hover:bg-transparent"><img src="./images/logo.webp" alt="" />
+          Peddy</a>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1 text-base font-semibold">
+          <li><a>Home</a></li>
+          <li><a>Shop</a></li>
+          <li><a>Contact</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end">
+        <span class="btn rounded-full border-[2px] bg-transparent hover:bg-transparent text-xl">
+          <i class="fa-regular fa-user"></i>
+        </span>
       </div>
     </nav>
 
-    <!-- banner section -->
-    <section>
-      <div class="flex flex-col justify-center items-center space-y-6">
-        <div class="mt-10 lg:w-4/6 flex flex-col justify-center items-center text-center">
-          <h3 class="text-xl lg:text-3xl font-extrabold">Bringing Families Together ❤️‍🔥</h3>
-          <h2 class="text-xl lg:text-2xl mt-10 font-extrabold">Your Path to Adoption Starts Here</h2>
-          <p class="py-6"> It is a long established fact that a reader will be distracted by the readable content of a
-            page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
-          <a href="#main" class="btn bg-buttonColor">View More</a>
-        </div>
-        <div>
-          <img src="./images/pet.webp" alt="">
+    <section class="mt-10">
+      <div class="hero">
+        <div class="hero-content text-center flex flex-col">
+          <div class="lg:max-w-3xl space-y-10">
+            <span class="font-bold lg:text-2xl text-xl text-gray-500">Bringing Families Together ❤️‍🔥</span>
+            <h1 class="lg:text-6xl text-4xl font-black">
+              Your Path to Adoption Starts Here
+            </h1>
+            <p class="font-medium">
+              Your path to adoption begins here, with compassionate guidance
+              and expert support. Whether you're growing your family or
+              offering a child a loving home, we're here to walk you through
+              every step of the adoption process, making your journey as
+              smooth and fulfilling as possible.
+            </p>
+
+            <a href="#main-section" class="btn bg-buttonColor text-white px-7 rounded-xl">
+              View More
+            </a>
+          </div>
+          <img src="./images/pet.webp" alt="" />
         </div>
       </div>
-
     </section>
   </header>
 
+
+
+
+
   <!-- main section -->
-  <main id="main" class="w-11/12 mx-auto p-5">
+  <main id="main-section" class="w-11/12 mx-auto p-5">
     <!-- best friend section -->
     <section>
       <div class="lg:w-4/6 mx-auto flex flex-col justify-center items-center py-5 space-y-4 text-center">
@@ -119,43 +108,61 @@
           at its layout. The point of using Lorem Ipsum is that it has a.</p>
       </div>
 
-      <!-- Pet Categories -->
+
       <section>
-        <section id="pet-categories" class="my-10 grid grid-cols-2 lg:grid-cols-4 justify-between gap-x-5 lg:gap-x-64 gap-y-4 lg:gap-y-10 max-w-full mx-auto"></section>
+
+        <!-- Pet Categories -->
+        <div id="pet-categories"
+          class="my-10 grid grid-cols-2 lg:grid-cols-4 justify-between gap-x-5 lg:gap-x-64 gap-y-4 lg:gap-y-10 w-full mx-auto">
+        </div>
+
+
+        <!-- pet Categories spinner -->
+        <div id="category-spinner" class="flex justify-center items-center">
+
+        </div>
       </section>
+
     </section>
 
     <!-- sort by Price -->
-     <section class="py-8">
+    <section class="py-8">
       <div class="flex justify-between items-center">
         <h2 class="text-base lg:text-xl font-bold">Best Deal For You</h2>
         <button class="btn bg-buttonColor text-white">Sort by Price</button>
       </div>
-     </section>
+    </section>
 
 
     <!-- all Pets -->
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5 border rounded-lg">
       <div id="all-pets-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 col-span-4 gap-5">
-        
+
       </div>
-      <div id="pet-image-container" class="grid col-span-2">
-        
+      <!-- <div id="pet-image-container" class="grid col-span-2"> -->
+
+        <!-- pet image section -->
+        <div class="border p-4 mt-5 rounded-xl gap-5 grid-cols-2 col-span-2" id="pet-image-container">
+          <div class="flex justify-center items-center absolute top-0 left-0 right-5" id="noImageSection">
+            
+          </div>
+        </div>
+
       </div>
     </section>
 
 
     <!-- modal -->
-     <section id="show-modal">
-     </section>
+    <section id="show-modal">
+    </section>
 
-     <!-- adopt Pet -->
-     <section id="adopt-pet">
-     </section>
+    <!-- adopt Pet -->
+    <section id="adopt-pet">
+    </section>
 
 
-     <!-- spinner -->
-     <div id="spinner"></div>
+    <!-- spinner -->
+    <div id="spinner"></div>
   </main>
 
 
@@ -187,8 +194,10 @@
         </div>
         <div class="mb-5 flex flex-col space-y-3">
           <h6 class="footer-title text-footerHeading">Drop a Message</h6>
-          <input class="py-2 rounded-lg outline-none text-footerParagraph text-base" type="text" placeholder="   Enter your email">
-          <button class="font-Inter text-white btn bg-buttonColor text-lg font-semibold rounded-2xl border-none">Subscribe</button>
+          <input class="py-2 rounded-lg outline-none text-footerParagraph text-base" type="text"
+            placeholder="   Enter your email">
+          <button
+            class="font-Inter text-white btn bg-buttonColor text-lg font-semibold rounded-2xl border-none">Subscribe</button>
         </div>
       </div>
     </div>
