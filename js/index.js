@@ -1,92 +1,105 @@
 // categories
-const showAllCategories = async () => {
-  const response = await fetch(
-    `https://openapi.programming-hero.com/api/peddy/categories`
-  );
-  const data = await response.json();
-  displayAllCategories(data.categories); //
+const showAllCategories = () => {
+  fetch("https://openapi.programming-hero.com/api/peddy/categories")
+    .then((response) => response.json())
+    .then((data) => displayAllCategories(data.categories))
+    .catch((error) => console.log(error));
 };
 
 // show All pet
-const showAllPets = async () => {
-  const response = await fetch(
-    `https://openapi.programming-hero.com/api/peddy/pets`
-  );
-  const data = await response.json();
-  displayAllPets(data.pets); //
+const showAllPets = () => {
+  fetch("https://openapi.programming-hero.com/api/peddy/pets")
+    .then((response) => response.json())
+    .then((data) => displayAllPets(data.pets))
+    .catch((error) => console.log(error));
 };
 
+// categorys show categoryname
 
-// // Show Pet details
-// const showPetDetails = async (id) => {
-//   const response = await fetch(
-//     `https://openapi.programming-hero.com/api/peddy/pet/${id}`
-//   );
-//   const data = await response.json();
-//   console.log(data); 
-// };
-
-
-
-
-
+const showByCategory = (id) => {
+  alert(id);
+  // fetch
+  fetch("https://openapi.programming-hero.com/api/peddy/category/${id}")
+    .then((response) => response.json())
+    .then((data) => console.log(data.categories))
+    .catch((error) => console.log(error));
+};
 
 // categories
 const displayAllCategories = (categories) => {
   const petCategoriesContainer = document.getElementById("pet-categories");
 
   categories.forEach((item) => {
-    const categoriesDiv = document.createElement("div");
-    categoriesDiv.innerHTML = `
-      
-      <button class="btn py-4 px-10 flex justify-center items-center border">
-        <div>
-          <img class="w-1/2 "
-            src=${item.category_icon}
-          />
-        </div>
-        <h2 class="text-2xl font-bold">${item.category}</h2>
-      </button>
-        
+    const buttonContainer = document.createElement("div");
+    buttonContainer.innerHTML = `
+    <button id="btn${item.category}" onclick="showByCategory(${item.category})" class=" btn category-btn py-8 px-10">
+      <img class="-mt-5 w-[20px]" src=${item.category_icon}/>
+      <span class="font-bold">${item.category}</span>
+    </button>
     `;
-    petCategoriesContainer.appendChild(categoriesDiv);
+
+    petCategoriesContainer.appendChild(buttonContainer);
   });
 };
 
 // show All pet
 const displayAllPets = (pet) => {
-  const allPetContainer = document.getElementById("all-pets");
+  const allPetContainer = document.getElementById("all-pets-container");
+
+  // -- categoryte data na thakle
+
+  // if(pet.length === 0) {
+  //   allPetContainer.innerHTML `
+  //   <div>
+  //     <img src="images/error.webp">
+  //     <h2 class="text-4xl font-bold font-Inter">No Information Available</h2>
+  //     <p class="font-Lato text-base text-mainParagraph">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+  //   </div>
+  //   `
+  //   return;
+  // }
 
   pet.forEach((item) => {
+    const { petId, image, pet_name, breed, date_of_birth, gender, price } =
+      item;
     const div = document.createElement("div");
-    div.classList = "lg:grid-cols-3 gap-5 ";
-    // const { brand, image, slug } = phone;
-    const { petId, image, pet_name, breed, date_of_birth, gender, price } = item;
     div.innerHTML = `
     <div>
-      <img src=${image}>
-      <div>
-        <h3 class="text-xl font-bold font-Inter text-bannerParagraph">${pet_name}</h3>
-        <p class="text-base text-mainParagraph">Breed:${breed}</p>
-        <p class="text-base text-mainParagraph"><i class="fa-regular fa-calendar"></i> Birth: ${date_of_birth}</p>
-        <p class="text-base text-mainParagraph"><i class="fa-solid fa-venus"></i> Gender: ${gender}</p>
-        <p class="text-base text-mainParagraph"><i class="fa-solid fa-dollar-sign"></i> Price:${price}</p>
-      <div class="flex justify-between">
-        <button class="btn"><i class="fa-solid fa-thumbs-up"></i></button>
-        <button class="btn">Adopt</button>
-        <button class="btn" onclick="showModal('${petId}')">Details</button>
+      <div class="p-5 shadow-lg rounded-lg space-y-3 mb-3">
+        <img src=${image}>
+        <div class="space-y-3">
+          <h3 class="text-xl font-bold font-Inter text-bannerParagraph">${pet_name}</h3>
+          <p class="text-base text-mainParagraph">Breed:${breed}</p>
+          <p class="text-base text-mainParagraph"><i class="fa-regular fa-calendar"></i> Birth: ${date_of_birth}</p>
+          <p class="text-base text-mainParagraph"><i class="fa-solid fa-venus"></i> Gender: ${gender}</p>
+          <p class="text-base text-mainParagraph"><i class="fa-solid fa-dollar-sign"></i> Price:${price}</p>
+        </div>  
+        <div class="flex justify-between">
+          <button onclick="collectImage()" class="btn"><i class="fa-solid fa-thumbs-up"></i></button>
+          <button onclick="adoptPet()" class="btn">Adopt</button>
+          <button class="btn" onclick="showModal('${petId}')">Details</button>
+        </div>
       </div>
     </div>
-  </div>
     `;
     allPetContainer.appendChild(div);
   });
 };
 
-
-
-
-
+// collect image
+const collectImage = (item) => {
+  const petImageContainer = document.getElementById("pet-image-container");
+  const div = document.createElement("div");
+  div.innerHTML = `
+  <div class="grid grid-cols-2 justify-between gap-5 p-4">
+    <div class="w-full p-2">
+      image
+    </div>
+    <div class="w-full p-2">image</div>
+  </div>
+  `;
+  petImageContainer.appendChild(div);
+};
 
 // modal function
 const showModal = async (id) => {
@@ -94,8 +107,17 @@ const showModal = async (id) => {
     `https://openapi.programming-hero.com/api/peddy/pet/${id}`
   );
   const data = await response.json();
-  console.log(data); 
-  const {image, pet_name, breed, date_of_birth, gender, price, vaccinated_status, pet_details} = data.petData;
+  console.log(data);
+  const {
+    image,
+    pet_name,
+    breed,
+    date_of_birth,
+    gender,
+    price,
+    vaccinated_status,
+    pet_details,
+  } = data.petData;
   const showModal = document.getElementById("show-modal");
   showModal.innerHTML = `
   <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
@@ -122,10 +144,46 @@ const showModal = async (id) => {
   my_modal_5.showModal();
 };
 
+// Adopt Pet
+const adoptPet = async (id) => {
+  const response = await fetch(
+    `https://openapi.programming-hero.com/api/peddy/pet/${id}`
+  );
+  const data = await response.json();
+  console.log(data);
+  const showModal = document.getElementById("adopt-pet");
+  showModal.innerHTML = `
+  <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box ">
+      <h3 class="text-2xl text-bannerParagraph font-bold mt-3"></h3>
+      <div class="grid grid-cols-2 space-y-2">
+        <p>Breed: </p>
+        <p>Birth: money</p>
+        <p>Gender: </p>
+        <p>Price:  </p>
+        <p>Vaccinated Status:  </p>
+      </div>
+      <h5>Details Information</h5>
+      <p>$</p>
+      <div class="modal-action">
+        <form method="dialog" class="w-full">
+          <button class="btn w-full">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+  `;
+  my_modal_5.showModal();
+};
 
+// spinner
+// const spinner = () => {
+//   // document.getElementById("spinner").style.display = "block";
 
-
-
+//   setTimeout(function () {
+//     showAllCategories();
+//   }, 4000);
+// };
 
 // function call
 showAllCategories();

@@ -21,6 +21,31 @@
     <!-- font Awesome CDN link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <style>
+      /* Spinner styles */
+
+      #spinner {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-top: 4px solid #000;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+  
+      /* Spinner animation */
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+  
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   <script>
     tailwind.config = {
       theme: {
@@ -42,8 +67,8 @@
   </script>
 </head>
 
-<body class="font-Lato">
-  <header class="container mx-auto p-5">
+<body>
+  <header class="w-11/12 mx-auto p-5">
     <!-- nav section -->
     <nav>
       <div class="navbar bg-base-100">
@@ -69,9 +94,9 @@
     <!-- banner section -->
     <section>
       <div class="flex flex-col justify-center items-center space-y-6">
-        <div class=" w-4/6 flex flex-col justify-center items-center text-center">
-          <h3 class="text-3xl">Bringing Families Together ❤️‍🔥</h3>
-          <h2 class="text-2xl font-bold">Your Path to Adoption Starts Here</h2>
+        <div class="mt-10 lg:w-4/6 flex flex-col justify-center items-center text-center">
+          <h3 class="text-xl lg:text-3xl font-extrabold">Bringing Families Together ❤️‍🔥</h3>
+          <h2 class="text-xl lg:text-2xl mt-10 font-extrabold">Your Path to Adoption Starts Here</h2>
           <p class="py-6"> It is a long established fact that a reader will be distracted by the readable content of a
             page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
           <a href="#main" class="btn bg-buttonColor">View More</a>
@@ -85,44 +110,52 @@
   </header>
 
   <!-- main section -->
-  <main id="main" class="container mx-auto p-5">
+  <main id="main" class="w-11/12 mx-auto p-5">
     <!-- best friend section -->
     <section>
-      <div class="w-4/6 mx-auto flex flex-col justify-center items-center py-5 space-y-4 text-center">
-        <h2 class="text-4xl font-bold">Adopt Your Best Friend</h2>
+      <div class="lg:w-4/6 mx-auto flex flex-col justify-center items-center py-5 space-y-4 text-center">
+        <h2 class="text-2xl lg:text-4xl font-bold">Adopt Your Best Friend</h2>
         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking
           at its layout. The point of using Lorem Ipsum is that it has a.</p>
       </div>
 
       <!-- Pet Categories -->
-      <section id="pet-categories" class="flex justify-between items-center my-12">
-
+      <section>
+        <section id="pet-categories" class="my-10 grid grid-cols-2 lg:grid-cols-4 justify-between gap-x-5 lg:gap-x-64 gap-y-4 lg:gap-y-10 max-w-full mx-auto"></section>
       </section>
     </section>
 
+    <!-- sort by Price -->
+     <section class="py-8">
+      <div class="flex justify-between items-center">
+        <h2 class="text-base lg:text-xl font-bold">Best Deal For You</h2>
+        <button class="btn bg-buttonColor text-white">Sort by Price</button>
+      </div>
+     </section>
+
 
     <!-- all Pets -->
-    <section id="all-pets-container" class="">
-      <div id="all-pets" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
-      <div class="grid grid-cols-1"></div>
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5 border rounded-lg">
+      <div id="all-pets-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 col-span-4 gap-5">
+        
+      </div>
+      <div id="pet-image-container" class="grid col-span-2">
+        
+      </div>
     </section>
 
 
     <!-- modal -->
      <section id="show-modal">
-      <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-          <h3 class="text-lg font-bold">Hello!</h3>
-          <p class="py-4">Press ESC key or click the button below to close</p>
-          <div class="modal-action">
-            <form method="dialog">
-              <!-- if there is a button in form, it will close the modal -->
-              <button class="btn">Close</button>
-            </form>
-          </div>
-        </div>
-      </dialog>
      </section>
+
+     <!-- adopt Pet -->
+     <section id="adopt-pet">
+     </section>
+
+
+     <!-- spinner -->
+     <div id="spinner"></div>
   </main>
 
 
@@ -131,9 +164,9 @@
   <!-- footer section -->
 
   <footer class="mt-12 bg-black p-5">
-    <div class="container mx-auto">
+    <div class="w-11/12 mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
-        <div class="justify-center space-y-2 text-footerHeading">
+        <div class="mb-5 justify-center space-y-2 text-footerHeading">
           <div class="flex  items-center gap-2">
             <img src="./images/logo.webp" alt="">
             <h2 class="text-3xl font-extrabold text-white">Peddy</h2>
@@ -144,7 +177,7 @@
           <p class="text-footerParagraph text-base">Openings hours: 9.00 AM - 5.00 PM</p>
           <div></div>
         </div>
-        <div class="space-y-2">
+        <div class="mb-5 space-y-2">
           <h6 class="footer-title text-footerHeading">Useful Links</h6>
           <p class="text-footerParagraph text-base">Home</p>
           <p class="text-footerParagraph text-base">About Us</p>
@@ -152,7 +185,7 @@
           <p class="text-footerParagraph text-base">Foundation</p>
           <p class="text-footerParagraph text-base">contact</p>
         </div>
-        <div class="flex flex-col space-y-3">
+        <div class="mb-5 flex flex-col space-y-3">
           <h6 class="footer-title text-footerHeading">Drop a Message</h6>
           <input class="py-2 rounded-lg outline-none text-footerParagraph text-base" type="text" placeholder="   Enter your email">
           <button class="font-Inter text-white btn bg-buttonColor text-lg font-semibold rounded-2xl border-none">Subscribe</button>
