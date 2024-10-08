@@ -86,7 +86,7 @@ const categoryName = (name) => {
     })
     .catch((error) => console.log(error));
 
-  // const allPet = document.getElementById('all-pets-container')
+  setTimeout(() => {}, 2000);
 };
 
 // show All pet
@@ -102,23 +102,35 @@ const displayAllPets = (pet) => {
       <div class="p-5 shadow-lg rounded-lg space-y-3 mb-3">
         <img src=${image}>
         <div class="space-y-3">
-          <h3 class="text-xl font-bold font-Inter text-bannerParagraph">${pet_name}</h3>
-          <p class="text-base text-mainParagraph">Breed:${breed}</p>
-          <p class="text-base text-mainParagraph"><i class="fa-regular fa-calendar"></i> Birth: ${date_of_birth}</p>
-          <p class="text-base text-mainParagraph"><i class="fa-solid fa-venus"></i> Gender: ${gender}</p>
-          <p class="text-base text-mainParagraph"><i class="fa-solid fa-dollar-sign"></i> Price:${price}</p>
+          <h3 class="text-xl font-bold font-Inter text-bannerParagraph">${
+            pet_name ?? "Not Available"
+          }</h3>
+          <p class="text-base text-mainParagraph"><i class="fa-regular fa-square"></i> Breed: ${
+            breed ?? "Not Available"
+          }</p>
+          <p class="text-base text-mainParagraph"><i class="fa-regular fa-calendar"></i> Birth: ${
+            date_of_birth ?? "Not Available"
+          }</p>
+          <p class="text-base text-mainParagraph"><i class="fa-solid fa-venus"></i> Gender: ${
+            gender ?? "Not Available"
+          }</p>
+          <p class="text-base text-mainParagraph"><i class="fa-solid fa-dollar-sign"></i> Price:${
+            price ?? "Not Available"
+          }</p>
         </div>  
         <div class="divider"></div>
         <div class="flex justify-between">
-          <button onclick="collectImage('${petId}')" class="btn"><i class="fa-solid fa-thumbs-up"></i></button>
-          <button onclick="adoptPet()" class="btn">Adopt</button>
-          <button class="btn" onclick="showModal('${petId}')">Details</button>
+          <button onclick="collectImage('${petId}')" class="btn text-buttonColor"><i class="fa-solid fa-thumbs-up"></i></button>
+          <button id="disabled-adopt" onclick="adoptPet()" class="btn text-buttonColor">Adopt</button>
+          <button class="btn text-buttonColor" onclick="showModal('${petId}')">Details</button>
         </div>
       </div>
     </div>
     `;
     allPetContainer.appendChild(div);
   });
+
+  setTimeout(() => {}, 2000);
 };
 
 // collect image
@@ -131,14 +143,12 @@ const collectImage = async (id) => {
   const petImageContainer = document.getElementById("noImageSection");
   petImageContainer.innerHTML += `
     
-      <div class="rounded-xl w-full">
+      <div class="rounded-xl w-full border p-2">
         <img class="w-full h-32 object-cover rounded-xl" src="${data.petData.image}"/>
       </div>
     
   `;
 };
-
-
 
 // modal function
 const showModal = async (id) => {
@@ -174,7 +184,7 @@ const showModal = async (id) => {
       <p>${pet_details}</p>
       <div class="modal-action">
         <form method="dialog" class="w-full">
-          <button class="btn w-full">Cancel</button>
+          <button class="btn w-full text-buttonColor">Cancel</button>
         </form>
       </div>
     </div>
@@ -183,8 +193,12 @@ const showModal = async (id) => {
   my_modal_5.showModal();
 };
 
-// Adopt Pet
+// Adopt Pet modal
 const adoptPet = async (id) => {
+  document
+    .getElementById("disabled-adopt")
+    .classList.add("disabled:opacity-75");
+
   const response = await fetch(
     `https://openapi.programming-hero.com/api/peddy/pet/${id}`
   );
@@ -193,17 +207,11 @@ const adoptPet = async (id) => {
   const showModal = document.getElementById("adopt-pet");
   showModal.innerHTML = `
   <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-    <div class="modal-box ">
-      <h3 class="text-2xl text-bannerParagraph font-bold mt-3"></h3>
-      <div class="grid grid-cols-2 space-y-2">
-        <p>Breed: </p>
-        <p>Birth: money</p>
-        <p>Gender: </p>
-        <p>Price:  </p>
-        <p>Vaccinated Status:  </p>
-      </div>
-      <h5>Details Information</h5>
-      <p>$</p>
+    <div class="modal-box flex flex-col justify-center items-center space-y-5">
+      
+      <img class="w-1/2 mr-10" src="images/hand-shake.gif"/>
+      <h2 class="text-6xl font-black">Congratulation</h2>
+      <h5 class="text-xl font-semibold">Adoption Process is Start For you Pet</h5>
       <div class="modal-action">
         <form method="dialog" class="w-full">
           <button class="btn w-full">Cancel</button>
@@ -212,6 +220,7 @@ const adoptPet = async (id) => {
     </div>
   </dialog>
   `;
+
   my_modal_5.showModal();
 };
 
