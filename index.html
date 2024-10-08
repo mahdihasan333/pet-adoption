@@ -48,8 +48,8 @@
 
 <body>
 
-  <header class="w-11/12 mx-auto xl:container">
-    <nav class="navbar bg-base-100">
+  <header class="w-11/12 mx-auto">
+    <nav class="navbar">
       <div class="navbar-start">
         <a class="btn btn-ghost text-3xl text-black hover:bg-transparent"><img src="./images/logo.webp" alt="" />
           Peddy</a>
@@ -65,6 +65,12 @@
         <span class="btn rounded-full border-[2px] bg-transparent hover:bg-transparent text-xl">
           <i class="fa-regular fa-user"></i>
         </span>
+      </div>
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+          <i class="fa-solid fa-bars text-3xl"></i>
+        </div>
+
       </div>
     </nav>
 
@@ -118,9 +124,10 @@
 
 
         <!-- pet Categories spinner -->
-        <div id="category-spinner" class="flex justify-center items-center">
-
+        <div id="spinner2" class="hidden flex justify-center items-center">
+          <span  class="loading loading-bars loading-lg"></span>
         </div>
+
       </section>
 
     </section>
@@ -129,35 +136,53 @@
     <section class="py-8">
       <div class="flex justify-between items-center">
         <h2 class="text-base lg:text-xl font-bold">Best Deal For You</h2>
-        <button class="btn bg-buttonColor text-white">Sort by Price</button>
+        <button id="sortPrice" class="btn bg-buttonColor text-white">Sort by Price</button>
       </div>
     </section>
 
 
     <!-- all Pets -->
-    <section id="pet-section" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5 border rounded-lg">
-      <div id="all-pets-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 col-span-4 gap-5">
+    <section id="pet-section" class="flex flex-col lg:flex-row lg:items-start lg:gap-x-5 rounded-lg">
+
+
+      <div id="all-pets-container"
+        class="lg:w-4/5 grid grid-cols-1 md:grid-cols-2 rounded-xl border lg:grid-cols-3 gap-5">
 
       </div>
 
+      <!-- <div>
+        <span id="main-spinner" class="hidden loading loading-bars loading-lg"></span>
+      </div> -->
 
+      <div id="error-container" class="lg:w-4/5 hidden ">
+        <div class="flex flex-col justify-center items-center lg:max-w-3xl mx-auto">
+          <img src="images/error.webp">
+          <h2 class="text-4xl font-bold font-Inter">No Information Available</h2>
+          <p class="font-Lato text-base text-mainParagraph">It is a long established fact that a reader will be
+            distracted
+            by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has
+            a.
+          </p>
+        </div>
+      </div>
 
       <!-- pet image section -->
-      <div class="border rounded-xl col-span-2" id="pet-image-container">
+      <div class="lg:w-1/5 border rounded-xl col-span-2" id="pet-image-container">
         <div class="w-full grid grid-cols-2 col-span-2 gap-4 p-3" id="noImageSection">
 
         </div>
       </div>
 
 
+
     </section>
-    <div id="error-container" class="hidden flex flex-col justify-center items-center">
+    <!-- <div id="error-container" class="hidden flex flex-col justify-center items-center">
       <img src="images/error.webp">
       <h2 class="text-4xl font-bold font-Inter">No Information Available</h2>
       <p class="font-Lato text-base text-mainParagraph">It is a long established fact that a reader will be distracted
         by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.
       </p>
-    </div>
+    </div> -->
 
 
     <!-- modal -->
@@ -165,12 +190,25 @@
     </section>
 
     <!-- adopt Pet -->
-    <section id="adopt-pet">
-    </section>
+    <section id="adopt-pet"></section>
+
+    <!-- adopt button timer -->
+    <dialog id="adoptBtn" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box flex flex-col justify-center items-center space-y-5">
+
+        <img class="w-1/2 mr-10" src="images/hand-shake.gif" />
+        <h2 class="text-6xl font-black">Congratulation</h2>
+        <h5 class="text-xl font-semibold">Adoption Process is Start For you Pet</h5>
+        <span id="count" class="text-7xl font-black">3</span>
+
+      </div>
+    </dialog>
 
 
     <!-- spinner -->
-    <div id="spinner"></div>
+    <div id="spinner" class="hidden flex justify-center items-center">
+      <span class="loading loading-bars loading-lg"></span>
+    </div>
   </main>
 
 
