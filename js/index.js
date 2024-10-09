@@ -88,17 +88,17 @@ const categoryName = (name, btn) => {
         </figure>
         
         <div class="space-y-3">
-          <h3 class="text-xl font-bold font-Inter text-bannerParagraph">${pet_name}</h3>
-          <p class="text-base text-mainParagraph">Breed:${breed}</p>
-          <p class="text-base text-mainParagraph"><i class="fa-regular fa-calendar"></i> Birth: ${date_of_birth}</p>
-          <p class="text-base text-mainParagraph"><i class="fa-solid fa-venus"></i> Gender: ${gender}</p>
-          <p class="text-base text-mainParagraph"><i class="fa-solid fa-dollar-sign"></i> Price:${price}</p>
+          <h3 class="text-xl font-bold font-Inter text-bannerParagraph">${pet_name ?? "Not Available"}</h3>
+          <p class="text-base text-mainParagraph">Breed:${breed ?? "Not Available"}</p>
+          <p class="text-base text-mainParagraph"><i class="fa-regular fa-calendar"></i> Birth: ${date_of_birth ?? "Not Available"}</p>
+          <p class="text-base text-mainParagraph"><i class="fa-solid fa-venus"></i> Gender: ${gender ?? "Not Available"}</p>
+          <p class="text-base text-mainParagraph"><i class="fa-solid fa-dollar-sign"></i> Price:${price ?? "Not Available"}</p>
         </div>  
         <div class="divider"></div>
         <div class="flex justify-between">
-          <button onclick="collectImage('${petId}')" class="btn text-buttonColor"><i class="fa-solid fa-thumbs-up"></i></button>
+          <button onclick="collectImage('${petId ?? "Not Available"}')" class="btn text-buttonColor"><i class="fa-solid fa-thumbs-up"></i></button>
           <button id="disabled-adopt" onclick="adoptPet(this)" class="btn text-buttonColor">Adopt</button>
-          <button class="btn text-buttonColor" onclick="showModal('${petId}')">Details</button>
+          <button class="btn text-buttonColor" onclick="showModal('${petId ?? "Not Available"}')">Details</button>
         </div>
       </div>
     </div>
@@ -193,7 +193,7 @@ const collectImage = async (id) => {
   petImageContainer.innerHTML += `
     
       <div class="rounded-xl w-full border p-2">
-        <img class="w-full h-32 object-cover rounded-xl" src="${data.petData.image}"/>
+        <img class="w-full h-full object-cover rounded-xl" src="${data.petData.image}"/>
       </div>
     
   `;
@@ -246,13 +246,16 @@ const showModal = async (id) => {
 const adoptPet = async (id) => {
   adoptBtn.showModal();
   const count = document.getElementById("count");
+  const count2 = count.innerText
 
-  let countValue = parseInt(count.innerText);
+  let countValue = parseInt(count2);
   const setTime = setInterval(() => {
     countValue--;
     count.innerText = countValue;
     if (countValue <= 0) {
+      
       clearInterval(setTime);
+      count.innerText = count2;
       adoptBtn.close();
       id.disabled = true;
       id.innerText = "Adopted";
