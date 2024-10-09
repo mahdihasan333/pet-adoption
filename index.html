@@ -51,7 +51,21 @@
   <header class="w-11/12 mx-auto">
     <nav class="navbar">
       <div class="navbar-start">
-        <a class="btn btn-ghost text-3xl text-black hover:bg-transparent"><img src="./images/logo.webp" alt="" />
+        <div class="dropdown">
+          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+            </svg>
+          </div>
+          <ul tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 p-2 shadow text-base font-semibold">
+            <li><a>Home</a></li>
+            <li><a>Shop</a></li>
+            <li><a>Contact</a></li>
+          </ul>
+        </div>
+        <a class="btn btn-ghost text-3xl text-black"><img src="./images/logo.webp" alt="" />
           Peddy</a>
       </div>
       <div class="navbar-center hidden lg:flex">
@@ -65,12 +79,6 @@
         <span class="btn rounded-full border-[2px] bg-transparent hover:bg-transparent text-xl">
           <i class="fa-regular fa-user"></i>
         </span>
-      </div>
-      <div class="dropdown">
-        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-          <i class="fa-solid fa-bars text-3xl"></i>
-        </div>
-
       </div>
     </nav>
 
@@ -110,7 +118,8 @@
     <section>
       <div class="lg:w-4/6 mx-auto flex flex-col justify-center items-center py-5 space-y-4 text-center">
         <h2 class="text-2xl lg:text-4xl font-bold">Adopt Your Best Friend</h2>
-        <p class="text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking
+        <p class="text-center">It is a long established fact that a reader will be distracted by the readable content of
+          a page when looking
           at its layout. The point of using Lorem Ipsum is that it has a.</p>
       </div>
 
@@ -125,7 +134,7 @@
 
         <!-- pet Categories spinner -->
         <div id="spinner2" class="hidden flex justify-center items-center">
-          <span  class="loading loading-bars loading-lg"></span>
+          <span class="loading loading-bars loading-lg"></span>
         </div>
 
       </section>
@@ -150,9 +159,7 @@
 
       </div>
 
-      <!-- <div>
-        <span id="main-spinner" class="hidden loading loading-bars loading-lg"></span>
-      </div> -->
+
 
       <div id="error-container" class="lg:w-4/5 hidden ">
         <div class="flex flex-col justify-center items-center lg:max-w-3xl mx-auto">
@@ -176,13 +183,7 @@
 
 
     </section>
-    <!-- <div id="error-container" class="hidden flex flex-col justify-center items-center">
-      <img src="images/error.webp">
-      <h2 class="text-4xl font-bold font-Inter">No Information Available</h2>
-      <p class="font-Lato text-base text-mainParagraph">It is a long established fact that a reader will be distracted
-        by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.
-      </p>
-    </div> -->
+
 
 
     <!-- modal -->
@@ -228,10 +229,15 @@
           <p class="text-footerParagraph text-base">Location: av. Washington 165, NY CA 54003</p>
           <p class="text-footerParagraph text-base">Phone: +31 85 964 47 25</p>
           <p class="text-footerParagraph text-base">Email: info@yourdomain.com</p>
-          <p class="text-footerParagraph text-base">Openings hours: 9.00 AM - 5.00 PM</p>
-          <div></div>
+          <p class="text-footerParagraph text-base pb-3">Openings hours: 9.00 AM - 5.00 PM</p>
+          <div class="flex space-x-5 items-center pb-3">
+            <img class="h-[30px] w-[30px] object-cover" src="./images/facebook.png" alt="">
+            <img class="h-[30px] w-[30px] object-cover" src="./images/twitter.png" alt="">
+            <img class="h-[30px] w-[30px] object-cover" src="./images/youtube.png" alt="">
+            <img class="h-[30px] w-[30px] object-cover" src="./images/Instagram.png" alt="">
+          </div>
         </div>
-        <div class="mb-5 md:ml-16 space-y-2">
+        <div class="mb-5 md:ml-16 space-y-2 pb-3">
           <h6 class="footer-title text-footerHeading">Useful Links</h6>
           <p class="text-footerParagraph text-base">Home</p>
           <p class="text-footerParagraph text-base">About Us</p>
@@ -241,8 +247,10 @@
         </div>
         <div class="mb-5 flex flex-col space-y-3">
           <h6 class="footer-title text-footerHeading">Drop a Message</h6>
-          <input class="py-2 rounded-lg outline-none text-footerParagraph text-base" type="text"
-            placeholder="   Enter your email">
+
+          <input class="input input-bordered w-full text-white bg-gray-800" type="text"
+            placeholder="Enter your email">
+
           <button
             class="font-Inter text-white btn bg-buttonColor text-lg font-semibold rounded-2xl border-none">Subscribe</button>
         </div>
