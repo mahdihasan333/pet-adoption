@@ -62,8 +62,19 @@
         </ul>
       </div>
       <div class="navbar-end">
-        <span class="btn rounded-full border-[2px] bg-transparent hover:bg-transparent text-xl">
-          <i class="fa-regular fa-user"></i>
+        <div class="dropdown lg:hidden">
+          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+            <i class="fa-solid fa-bars text-2xl"></i>
+          </div>
+          <ul tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-base font-semibold">
+            <li><a>Home</a></li>
+            <li><a>Shop</a></li>
+            <li><a>Contact</a></li>
+          </ul>
+        </div>
+        <span class="btn hidden lg:block text-xl border rounded-full">
+          <i class="fa-regular fa-user mt-3"></i>
         </span>
       </div>
     </nav>
