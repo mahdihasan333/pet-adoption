@@ -1,34 +1,30 @@
+# BPL DREAM 11
 
-# Peddy - Pet Adoption Platform
+A fantasy cricket team selection platform allowing users to create Dream 11 teams, view player stats, manage selections, claim credits, and subscribe for updates. Features intuitive navigation and player management tools.
 
-Peddy is an innovative pet adoption platform connecting potential pet owners with animals in need of homes. It offers a user-friendly interface to browse available pets, learn about their backgrounds, and find the perfect match. Peddy also supports shelters by streamlining the adoption process, making it efficient and compassionate.
+## Project Preview
 
+![Project Preview](https://i.ibb.co.com/hTrhKQj/Screenshot-2025-02-05-at-5-37-28-PM.png)
 
-## 5 key features of the project
+## Technologies Used
 
-- The user will be able to see the details of their account.
-- The user can adopt the pet.
-- By clicking on the "User Category" button, you can view the stomach according to its category.
-- By clicking the "Sort by Price" button, the user can view the prices in descending order.
-- The project is fully responsive, displaying correctly on all devices including mobile, tablet, and desktop. Users will be able to easily browse the pet adoption platform from any device, and each feature will automatically adjust according to their screen size.
+- React JS
+- Tailwind CSS
+- DaisyUI
+- ReactJS Toastify
 
+## Key Features
 
+- Selecting players
+- Building a team
+- Claiming credits
+- Deleting selected players
 
-## ES6 features used.
+## Installation Guide
 
-- Arrow Functions
-- Template Literals
-- const and let
-- Default Parameters (??)
-- Object Destructuring
-- Promises with .then() and .catch()
-- Async/Await
-- forEach()
+Follow these steps to set up the project locally:
 
-
-## Deployment
-
-Live site : Peddy - Pet Adoption Platform
-
-https://assignment-6-pet-adoption.surge.sh/
-
+### **1️⃣ Clone the repository**
+```bash
+git clone https://github.com/your-username/BPL-Dream-11.git
+cd BPL-Dream-11
